@@ -1,0 +1,15 @@
+{
+  "name": "rs-school-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "caesar-cli.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlekseyLevko/rs-school-nodejs.git"
+  },
+  "author": "Alex (@AlekseyLevko)",
+  "devDependencies": {
+    "prettier": "2.4.1"
+  }
+}
