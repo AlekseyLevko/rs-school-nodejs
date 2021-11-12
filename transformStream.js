@@ -10,7 +10,9 @@ class TransformStream extends Transform {
 
   _transform = (chunk, encoding, callback) => {
     const string = chunk.toString();
-    const transformString = this.transformAtbash(string);
+    let transformString;
+    if (this.cipher === "C" || this.cipher === "R") transformString = this.transformByShift(string);
+    if (this.cipher === "A") transformString = this.transformAtbash(string);
     callback(null, transformString);
   };
 

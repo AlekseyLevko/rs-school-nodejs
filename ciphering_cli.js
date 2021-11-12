@@ -23,6 +23,10 @@ process.on("exit", (code) => {
     case 3:
       stderr.write(`Обнаружены дубликаты флага "-o". Программа завершилась с кодом ${code}`);
       break;
+    case 4:
+      stderr.write(`Конфиг не валиден либо отсутствует. Программа завершилась с кодом ${code}`);
+      break;
+
     default:
       stderr.write(`Программа завершилась с ошибкой. Код ошибки - ${code}`);
   }
@@ -31,15 +35,23 @@ process.on("exit", (code) => {
 checkArgumentsForDuplicates();
 
 const config = getValueByFlag("-c");
+validateConfig(config);
 const inputFilePath = getValueByFlag("-i");
 const outputFilePath = getValueByFlag("-o");
 
-validateConfig(config);
-
-//const readableStream = new ReadableStream();
-//const writableStream = new WritableStream();
-
-//readableStream.push("hello world!");
+const createTransformStreams = (config) => {
+  const streams = [];
+  const streamConfigs = config.split("-");
+  streamConfigs.forEach((streamConfig) => {
+    const cipher = streamConfig[0];
+    const encoding = Number(streamConfig[1]);
+    let shift;
+    if (cipher === "C") shift = 1;
+    if (cipher === "R") shift = 8;
+    streams.push(new TransformStream(cipher, shift, encoding));
+  });
+  return streams;
+};
 
 const readableStream = fs.createReadStream(inputFilePath, "utf-8");
 readableStream.on("error", (error) => {
@@ -47,7 +59,7 @@ readableStream.on("error", (error) => {
   process.exit(4);
 });
 
-const transformStream = new TransformStream("C", 1, 0);
+const transformStreams = createTransformStreams(config);
 
 const writableStream = fs.createWriteStream(outputFilePath);
 writableStream.on("error", (error) => {
@@ -55,7 +67,7 @@ writableStream.on("error", (error) => {
   process.exit(5);
 });
 
-pipeline(readableStream, transformStream, writableStream, (err) => {
+pipeline(readableStream, ...transformStreams, writableStream, (err) => {
   if (err) {
     console.log(err.message);
   }
