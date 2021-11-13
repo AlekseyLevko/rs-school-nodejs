@@ -1,74 +1,64 @@
-const { stdout, stderr } = process;
-const fs = require("fs");
+const { stdin, stdout } = process;
+const { createReadStream, createWriteStream, accessSync, constants } = require("fs");
 const { pipeline } = require("stream");
-const WritableStream = require("./writableStream");
-const ReadableStream = require("./readableStream");
-const TransformStream = require("./transformStream");
-
 const getValueByFlag = require("./getValueByFlag.js");
 const validateConfig = require("./validateConfig");
 const checkArgumentsForDuplicates = require("./checkArgumentsForDuplicates");
+const processOn = require("./processOn");
+const createTransformStreams = require("./createTransformStreams");
 
-process.on("exit", (code) => {
-  switch (code) {
-    case 0:
-      stdout.write("Процесс завершен успешно!");
-      break;
-    case 1:
-      stderr.write(`Обнаружены дубликаты флага "-c". Программа завершилась с кодом ${code}`);
-      break;
-    case 2:
-      stderr.write(`Обнаружены дубликаты флага "-i". Программа завершилась с кодом ${code}`);
-      break;
-    case 3:
-      stderr.write(`Обнаружены дубликаты флага "-o". Программа завершилась с кодом ${code}`);
-      break;
-    case 4:
-      stderr.write(`Конфиг не валиден либо отсутствует. Программа завершилась с кодом ${code}`);
-      break;
-
-    default:
-      stderr.write(`Программа завершилась с ошибкой. Код ошибки - ${code}`);
-  }
-});
+processOn();
 
 checkArgumentsForDuplicates();
 
-const config = getValueByFlag("-c");
+const config = getValueByFlag("-c") || getValueByFlag("--config");
+
 validateConfig(config);
-const inputFilePath = getValueByFlag("-i");
-const outputFilePath = getValueByFlag("-o");
 
-const createTransformStreams = (config) => {
-  const streams = [];
-  const streamConfigs = config.split("-");
-  streamConfigs.forEach((streamConfig) => {
-    const cipher = streamConfig[0];
-    const encoding = Number(streamConfig[1]);
-    let shift;
-    if (cipher === "C") shift = 1;
-    if (cipher === "R") shift = 8;
-    streams.push(new TransformStream(cipher, shift, encoding));
-  });
-  return streams;
-};
+const inputFilePath = getValueByFlag("-i") || getValueByFlag("--input");
 
-const readableStream = fs.createReadStream(inputFilePath, "utf-8");
+if (inputFilePath) {
+  try {
+    accessSync(inputFilePath, constants.R_OK);
+  } catch (err) {
+    process.exit(5);
+  }
+}
+
+//Checking file access in synchronous mode so that createWriteStream does not create the file itself
+const outputFilePath = getValueByFlag("-o") || getValueByFlag("--output");
+
+if (outputFilePath) {
+  try {
+    accessSync(outputFilePath, constants.W_OK);
+  } catch (err) {
+    process.exit(6);
+  }
+}
+
+const readableStream = inputFilePath ? createReadStream(inputFilePath, "utf-8") : stdin;
+
 readableStream.on("error", (error) => {
   console.log("Error", error.message);
-  process.exit(4);
+  process.exit(21);
 });
 
 const transformStreams = createTransformStreams(config);
 
-const writableStream = fs.createWriteStream(outputFilePath);
+const writableStream = outputFilePath
+  ? createWriteStream(outputFilePath, {
+      flags: "a"
+    })
+  : stdout;
+
 writableStream.on("error", (error) => {
   console.log("Error", error.message);
-  process.exit(5);
+  process.exit(22);
 });
 
 pipeline(readableStream, ...transformStreams, writableStream, (err) => {
   if (err) {
     console.log(err.message);
+    process.exit(23);
   }
 });

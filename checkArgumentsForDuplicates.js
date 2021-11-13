@@ -1,11 +1,11 @@
 module.exports = () => {
-  const count = (el, arr) => {
-    return arr.filter((arrItem) => arrItem === el).length;
+  const count = (elements, args) => {
+    return args.filter((arg) => elements.includes(arg)).length;
   };
 
   const args = process.argv.slice(2);
 
-  if (count("-c", args) > 1) process.exit(1);
-  if (count("-i", args) > 1) process.exit(2);
-  if (count("-o", args) > 1) process.exit(3);
+  if (count(["-c", "--config"], args) > 1) process.exit(2);
+  if (count(["-i", "--input"], args) > 1) process.exit(3);
+  if (count(["-o", "--output"], args) > 1) process.exit(4);
 };
