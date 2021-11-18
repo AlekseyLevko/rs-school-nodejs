@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1637142213692" clover="3.2.0">
-  <project timestamp="1637142213692" name="All files">
-    <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="3" methods="3" coveredmethods="3" elements="16" coveredelements="13" complexity="0" loc="7" ncloc="7" packages="1" files="1" classes="1"/>
-    <file name="checkArgumentsForDuplicates.js" path="/Users/aleksejlevko/Desktop/work/projects/rs-school-nodejs/checkArgumentsForDuplicates.js">
-      <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="3" methods="3" coveredmethods="3"/>
+<coverage generated="1637236379046" clover="3.2.0">
+  <project timestamp="1637236379046" name="All files">
+    <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2" elements="12" coveredelements="12" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
+    <file name="countElementsInArray.js" path="/Users/aleksejlevko/Desktop/work/projects/rs-school-nodejs/countElementsInArray.js">
+      <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
       <line num="1" count="1" type="stmt"/>
-      <line num="2" count="1" type="stmt"/>
-      <line num="3" count="3" type="stmt"/>
-      <line num="6" count="1" type="stmt"/>
-      <line num="8" count="1" type="cond" truecount="1" falsecount="1"/>
-      <line num="9" count="1" type="cond" truecount="1" falsecount="1"/>
-      <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="2" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="10" count="10" type="stmt"/>
     </file>
   </project>
 </coverage>
