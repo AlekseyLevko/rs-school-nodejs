@@ -13,17 +13,17 @@ test(`user passes the same "-c" ("--config) cli argument twice`, (done) => {
     "C1"
   ]);
 
-  const EXPECTED_OUTPUT = `Duplicates of the "-c" ("--config") flag were detected. The program terminated with an error code 2`;
+  const EXPECTED_OUTPUT_MESSAGE = `Duplicates of the "-c" ("--config") flag were detected. The program terminated with an error code 2`;
 
-  let output = "";
+  let errorMessage = "";
 
   cp.stderr.on("data", (chunk) => {
-    output += chunk.toString();
+    errorMessage += chunk.toString();
   });
 
   cp.stderr.on("end", () => {
-    output = output.trim();
-    expect(output).toBe(EXPECTED_OUTPUT);
+    errorMessage = errorMessage.trim();
+    expect(errorMessage).toBe(EXPECTED_OUTPUT_MESSAGE);
     done();
   });
 });
@@ -41,17 +41,17 @@ test(`user passes the same "-i" ("--input) cli argument twice`, (done) => {
     "./input.txt"
   ]);
 
-  const EXPECTED_OUTPUT = `Duplicates of the "-i" ("--input") flag were detected. The program terminated with an error code 3`;
+  const EXPECTED_OUTPUT_MESSAGE = `Duplicates of the "-i" ("--input") flag were detected. The program terminated with an error code 3`;
 
-  let output = "";
+  let errorMessage = "";
 
   cp.stderr.on("data", (chunk) => {
-    output += chunk.toString();
+    errorMessage += chunk.toString();
   });
 
   cp.stderr.on("end", () => {
-    output = output.trim();
-    expect(output).toBe(EXPECTED_OUTPUT);
+    errorMessage = errorMessage.trim();
+    expect(errorMessage).toBe(EXPECTED_OUTPUT_MESSAGE);
     done();
   });
 });
@@ -69,17 +69,17 @@ test(`user passes the same "-o" ("--output) cli argument twice`, (done) => {
     "./output.txt"
   ]);
 
-  const EXPECTED_OUTPUT = `Duplicates of the "-o" ("--output) flag were detected. The program terminated with an error code 4`;
+  const EXPECTED_OUTPUT_MESSAGE = `Duplicates of the "-o" ("--output) flag were detected. The program terminated with an error code 4`;
 
-  let output = "";
+  let errorMessage = "";
 
   cp.stderr.on("data", (chunk) => {
-    output += chunk.toString();
+    errorMessage += chunk.toString();
   });
 
   cp.stderr.on("end", () => {
-    output = output.trim();
-    expect(output).toBe(EXPECTED_OUTPUT);
+    errorMessage = errorMessage.trim();
+    expect(errorMessage).toBe(EXPECTED_OUTPUT_MESSAGE);
     done();
   });
 });
