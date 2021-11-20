@@ -9,7 +9,7 @@ const createTransformStreams = require("./createTransformStreams");
 
 processOn();
 
-checkArgumentsForDuplicates();
+checkArgumentsForDuplicates(process.argv.slice(2));
 
 const config = getValueByFlag("-c") || getValueByFlag("--config");
 
