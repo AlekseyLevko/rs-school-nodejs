@@ -1,6 +1,6 @@
 const { spawn } = require("child_process");
 
-test("User doesn't pass -c or --config argument", (done) => {
+test("user doesn't pass -c or --config argument", (done) => {
   const cp = spawn("node", ["ciphering_cli.js", "-i", "./input.txt", "-o", "./output.txt"]);
 
   const EXPECTED_OUTPUT_MESSAGE = `The config is not valid or missing. Check the value of the -c (--config) argument.The program terminated with an error code 10`;
