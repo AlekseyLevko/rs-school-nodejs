@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "caesar-cli.js",
-  "scripts": {},
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AlekseyLevko/rs-school-nodejs.git"
   },
   "author": "Alex (@AlekseyLevko)",
   "devDependencies": {
+    "jest": "^27.3.1",
     "prettier": "2.4.1"
   }
 }

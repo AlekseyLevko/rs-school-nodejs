@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1637486102232" clover="3.2.0">
+  <project timestamp="1637486102232" name="All files">
+    <metrics statements="36" coveredstatements="36" conditionals="28" coveredconditionals="28" methods="8" coveredmethods="8" elements="72" coveredelements="72" complexity="0" loc="36" ncloc="36" packages="1" files="4" classes="4"/>
+    <file name="checkArgumentsForDuplicates.js" path="/Users/aleksejlevko/Desktop/work/projects/rs-school-nodejs/checkArgumentsForDuplicates.js">
+      <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="5" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="6" count="4" type="cond" truecount="2" falsecount="0"/>
+    </file>
+    <file name="countElementsInArray.js" path="/Users/aleksejlevko/Desktop/work/projects/rs-school-nodejs/countElementsInArray.js">
+      <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <line num="1" count="2" type="stmt"/>
+      <line num="2" count="17" type="cond" truecount="2" falsecount="0"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="16" type="cond" truecount="2" falsecount="0"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="10" count="72" type="stmt"/>
+    </file>
+    <file name="transformAtbash.js" path="/Users/aleksejlevko/Desktop/work/projects/rs-school-nodejs/transformAtbash.js">
+      <metrics statements="11" coveredstatements="11" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="3" type="stmt"/>
+      <line num="3" count="3" type="stmt"/>
+      <line num="4" count="3" type="stmt"/>
+      <line num="5" count="87" type="stmt"/>
+      <line num="6" count="87" type="cond" truecount="4" falsecount="0"/>
+      <line num="7" count="28" type="stmt"/>
+      <line num="8" count="59" type="cond" truecount="4" falsecount="0"/>
+      <line num="9" count="51" type="stmt"/>
+      <line num="11" count="8" type="stmt"/>
+      <line num="14" count="3" type="stmt"/>
+    </file>
+    <file name="transformByShift.js" path="/Users/aleksejlevko/Desktop/work/projects/rs-school-nodejs/transformByShift.js">
+      <metrics statements="14" coveredstatements="14" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="3"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="4" type="stmt"/>
+      <line num="3" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="4" count="4" type="stmt"/>
+      <line num="6" count="4" type="stmt"/>
+      <line num="7" count="120" type="stmt"/>
+      <line num="10" count="4" type="stmt"/>
+      <line num="11" count="164" type="stmt"/>
+      <line num="12" count="164" type="cond" truecount="4" falsecount="0"/>
+      <line num="13" count="8" type="stmt"/>
+      <line num="14" count="156" type="cond" truecount="4" falsecount="0"/>
+      <line num="15" count="112" type="stmt"/>
+      <line num="17" count="44" type="stmt"/>
+      <line num="20" count="4" type="stmt"/>
+    </file>
+  </project>
+</coverage>
